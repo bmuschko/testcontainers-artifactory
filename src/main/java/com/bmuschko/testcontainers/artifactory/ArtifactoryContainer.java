@@ -17,7 +17,7 @@ public class ArtifactoryContainer extends GenericContainer<ArtifactoryContainer>
         dockerImageName.assertCompatibleWith(OSS_DOCKER_IMAGE_NAME, PRO_DOCKER_IMAGE_NAME);
         withExposedPorts(8081, 8082);
         withCreateContainerCmdModifier(cmd -> cmd.getHostConfig().withBinds(Bind.parse(("artifactory-data:/var/opt/jfrog/artifactory"))));
-        waitingFor(Wait.forLogMessage(".*All services started successfully.*", 1).withStartupTimeout(Duration.ofSeconds(240)));
+        waitingFor(Wait.forLogMessage(".*All services started successfully.*", 1).withStartupTimeout(Duration.ofSeconds(300)));
     }
 
     public String getHttpHostAddress() {
