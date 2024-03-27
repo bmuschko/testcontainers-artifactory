@@ -1,0 +1,29 @@
+sourceSets {
+    integrationTest {
+        java.srcDir file('src/integrationTest/java')
+        resources.srcDir file('src/integrationTest/resources')
+        compileClasspath += sourceSets.main.output + configurations.testRuntimeClasspath
+        runtimeClasspath += output + compileClasspath
+    }
+}
+
+def integrationTest = tasks.register('integrationTest', Test) {
+    description = 'Runs the integration tests.'
+    group = 'verification'
+    testClassesDirs = sourceSets.integrationTest.output.classesDirs
+    classpath = sourceSets.integrationTest.runtimeClasspath
+    testLogging {
+        showStandardStreams = true
+    }
+    mustRunAfter test
+}
+
+tasks.named('check').configure {
+    dependsOn integrationTest
+}
+
+dependencies {
+    integrationTestImplementation 'org.testcontainers:junit-jupiter:1.19.7'
+    integrationTestImplementation 'org.slf4j:slf4j-simple:2.0.12'
+    integrationTestImplementation 'org.jfrog.artifactory.client:artifactory-java-client-services:2.17.0'
+}
