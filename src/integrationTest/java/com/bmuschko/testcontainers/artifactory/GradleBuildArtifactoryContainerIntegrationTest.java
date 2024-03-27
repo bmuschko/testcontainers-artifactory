@@ -5,9 +5,7 @@ import org.jfrog.artifactory.client.model.Repository;
 import org.jfrog.artifactory.client.model.repository.settings.MavenRepositorySettings;
 import org.jfrog.artifactory.client.model.repository.settings.impl.MavenRepositorySettingsImpl;
 import org.junit.jupiter.api.Test;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
-@Testcontainers
 public class GradleBuildArtifactoryContainerIntegrationTest extends AbstractIntegrationTest {
     @Test
     void canResolveDependenciesFromRemoteMavenRepository() {
