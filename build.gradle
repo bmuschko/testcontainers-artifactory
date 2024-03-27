@@ -3,7 +3,6 @@ plugins {
 }
 
 apply from: 'gradle/integration-test.gradle'
-apply from: 'gradle/functional-test.gradle'
 
 group = 'com.bmuschko'
 version = '1.0.0'
